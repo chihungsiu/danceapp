@@ -1,19 +1,37 @@
+
 // Initialize your app
 var myApp = new Framework7({
     animateNavBackIcon: true,
+    precompileTemplates: true,
     onPageInit: function (page) {
-        pageinit(page);
+        //indexInit(page);
+        $(document).on('deviceready', function() {
+            console.log("Device is ready!");
+            $$(document).on('pageInit', function (e) {
+                pageinit(page);
+                // Do something here when page loaded and initialized
+
+            })
+        });
     }
 });
+
+
 de1 = function () {
     console.log(myApp);
 };
+de2=function(){
+    //mainView.router.refreshPage();
+    mainView.router.reloadPage('#index');
+    //location.reload();
+}
 
 // Export selectors engine
 var $$ = Dom7;
 
 // Add main View
-var mainView = myApp.addView('.view-main', {
+mainView = myApp.addView('.view-main', {
+//var mainView = myApp.addView('.view-main', {
     // Enable dynamic Navbar
     dynamicNavbar: true,
     // Enable Dom Cache so we can use all inline pages
@@ -21,11 +39,13 @@ var mainView = myApp.addView('.view-main', {
 });
 $(function () {
 });
-function pageinit(page) {
-    $(document).on('deviceready', function() {
-        console.log("Device is ready!");
-        //console.log(myApp);
-    });
+function indexInit(page){
+    $$('.center').click(function(){
+        console.log('ok');});
+}
+function pageinit(page,e) {
+    console.log('loaded');
+
     $(document).keypress(function(e){
         //console.log(e.which);
         if(e.which===32){
