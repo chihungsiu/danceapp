@@ -1,7 +1,13 @@
 // Initialize your app
 var myApp = new Framework7({
-    animateNavBackIcon: true
+    animateNavBackIcon: true,
+    onPageInit: function (page) {
+        pageinit(page);
+    }
 });
+de1 = function () {
+    console.log(myApp);
+};
 
 // Export selectors engine
 var $$ = Dom7;
@@ -13,13 +19,41 @@ var mainView = myApp.addView('.view-main', {
     // Enable Dom Cache so we can use all inline pages
     domCache: true
 });
+$(function () {
+});
+function pageinit(page) {
+    $(document).on('deviceready', function() {
+        console.log("Device is ready!");
+        //console.log(myApp);
+    });
+    $(document).keypress(function(e){
+        //console.log(e.which);
+        if(e.which===32){
+        //    use space as backbutton
+        //    mainView.router.load();
+            console.log('spacebar');
+        }
+        if(e.which===44){
+            $('.icon-back').click();
+            console.log('pressed <');
+        }
+        if(e.which===46){
+            console.log('pressed >');
+        }
+        if(e.which===47){
+            $('.icon-back').click();
+            console.log('pressed /');
+        }
 
-$(document).on('pageInit', function (e) {
-    //init
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-    }
-
+    });
+    $('.test2').click(function(){
+        $('.icon-bars').click();
+        //myApp.alert();
+    });
+    $(document).on('backbutton', function() {
+        mainView.router.back();
+        //$.mobile.changePage("#homepage", "slideup");
+    });
     var liveDB = 'https://rocky-headland-65432.herokuapp.com/';
     $('.getdb').click(function (e) {
         var btn = $(e.target);
@@ -61,31 +95,35 @@ $(document).on('pageInit', function (e) {
             url: liveDB + 'db/post',
             timeout: 10000,
             error: function (err) {
-                console.error(err);
                 btn.prop("disabled", false);
+                console.error(err);
             },
             success: function (response, textStatus, xhr) {
-                console.log(response);
                 btn.prop("disabled", false);
+                console.log(response);
                 var showText = 'data is sent\n\n' +
                     JSON.stringify(response.dataInDB, 0, 2);
                 $('.post').find('textarea').val(showText)
             }
         });
     });
-    $('.qrBtn').click(function(){
-        //myApp.alert('test');
-        console.log('clicked');
+    $('.qrBtn').click(function (e) {
+        var btn = $(e.target);
+        btn.prop("disabled", true);
         cordova.plugins.barcodeScanner.scan(
             function (result) {
+                btn.prop("disabled", false);
                 alert("We got a barcode\n" +
                 "Result: " + result.text + "\n" +
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled);
+                $(e.target).prop("disabled", false);
             },
             function (error) {
+                btn.prop("disabled", false);
                 alert("Scanning failed: " + error);
+                $(e.target).prop("disabled", false);
             }
         );
-    });
-});
+    })
+}

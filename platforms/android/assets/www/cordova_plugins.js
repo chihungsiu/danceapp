@@ -12,8 +12,9 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "phonegap-plugin-barcodescanner": "4.1.0",
-    "cordova-plugin-whitelist": "1.2.2"
+    "cordova-plugin-whitelist": "1.2.2",
+    "phonegap-plugin-barcodescanner": "5.0.0",
+    "cordova-plugin-compat": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

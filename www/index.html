@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, height=device-height">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>My App</title>
+    <title>Dancing</title>
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="dist/css/framework7.ios.min.css">
     <!-- Path to your custom app styles-->
@@ -39,7 +39,7 @@
           <!-- Navbar inner for Index page-->
           <div data-page="index" class="navbar-inner">
             <!-- We have home navbar without left link-->
-            <div class="center sliding">Awesome App</div>
+            <div class="center sliding">Dancing App</div>
             <div class="right">
               <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
             </div>
@@ -68,7 +68,7 @@
             <div class="page-content">
               <div class="content-block-title">Welcome To My Awesome App</div>
               <div class="content-block">
-                <div class="content-block-inner">
+                <div id="a" class="content-block-inner">
                   <p>Couple of worlds here because my app is so awesome!</p>
                 </div>
               </div>
@@ -79,12 +79,6 @@
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">About</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="#services" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Services</div>
                         </div>
                       </div></a></li>
                   <li><a href="data-get.html" class="item-link">
@@ -99,18 +93,30 @@
                           <div class="item-title">Data Set</div>
                         </div>
                       </div></a></li>
-                  <li><a href="qr-scan.html" data-view=".view-main" class="item-link">
+                  <li><a href="qr-scan.html" class="item-link">
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">QR Scan</div>
                         </div>
                       </div></a></li>
-                  <li><a href="test.html" data-view=".view-main" class="item-link">
+                  <li><a href="test.html" class="item-link">
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Test</div>
                         </div>
                       </div></a></li>
+                  <li><a href="#" class="item-link test2">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Test2</div>
+                        </div>
+                      </div></a></li>
+                    <li><a href="#services" class="item-link">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Services</div>
+                            </div>
+                        </div></a></li>
                   <li><a href="#form" class="item-link">
                       <div class="item-content">
                         <div class="item-inner">
@@ -383,10 +389,11 @@
         </div>
         <!-- Bottom Toolbar-->
         <div class="toolbar">
-          <div class="toolbar-inner"><a href="#" class="link">Link 1</a><a href="#" class="link">Link 2</a></div>
+          <div class="toolbar-inner"><a href="#" class="link link1">Link 1</a><a href="#" class="link">Link 2</a></div>
         </div>
       </div>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="cordova.js"></script>

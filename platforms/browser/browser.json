@@ -44,6 +44,6 @@
     ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.1",
-        "phonegap-plugin-barcodescanner": "4.1.0"
+        "phonegap-plugin-barcodescanner": "5.0.0"
     }
 }
