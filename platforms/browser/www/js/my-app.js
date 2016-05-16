@@ -1,30 +1,23 @@
-
 // Initialize your app
 var myApp = new Framework7({
+    tapHoldDelay: 600,
     animateNavBackIcon: true,
     precompileTemplates: true,
-    onPageInit: function (page) {
-        //indexInit(page);
-        $(document).on('deviceready', function() {
+    onPageInit: function (fw7) {
+        indexInit(fw7);
+        $(document).on('deviceready', function () {
             console.log("Device is ready!");
             $$(document).on('pageInit', function (e) {
-                pageinit(page);
+                pageinit(fw7, e);
                 // Do something here when page loaded and initialized
-
             })
         });
     }
 });
 
-
 de1 = function () {
     console.log(myApp);
 };
-de2=function(){
-    //mainView.router.refreshPage();
-    mainView.router.reloadPage('#index');
-    //location.reload();
-}
 
 // Export selectors engine
 var $$ = Dom7;
@@ -37,40 +30,59 @@ mainView = myApp.addView('.view-main', {
     // Enable Dom Cache so we can use all inline pages
     domCache: true
 });
-$(function () {
-});
-function indexInit(page){
-    $$('.center').click(function(){
-        console.log('ok');});
-}
-function pageinit(page,e) {
-    console.log('loaded');
 
-    $(document).keypress(function(e){
+function indexInit(fw7) {
+    $('.center').click(function () {
+
+    });
+}
+function pageinit(fw7, e) {
+    console.log('loaded');
+    var page = e.detail.page.name;
+    if (page === 'whatever') {
+        var compiledTemplate = Template7.compile($$('#template').html());
+        var context = {
+            firstName: 'Alice',
+            lastName: 'Doe'
+        };
+        var html = compiledTemplate(context);
+        $('.temp1').html(html);
+        $('.show1').click(function(){
+
+        });
+        $('.show2').click(function(){
+            setTimeout(function(){
+
+            },4000);
+        });
+    }
+
+
+    $(document).keypress(function (e) {
         //console.log(e.which);
-        if(e.which===32){
-        //    use space as backbutton
-        //    mainView.router.load();
+        if (e.which === 32) {
+            //    use space as backbutton
+            //    mainView.router.load();
             console.log('spacebar');
         }
-        if(e.which===44){
+        if (e.which === 44) {
             $('.icon-back').click();
             console.log('pressed <');
         }
-        if(e.which===46){
+        if (e.which === 46) {
             console.log('pressed >');
         }
-        if(e.which===47){
+        if (e.which === 47) {
             $('.icon-back').click();
             console.log('pressed /');
         }
 
     });
-    $('.test2').click(function(){
+    $('.test2').click(function () {
         $('.icon-bars').click();
         //myApp.alert();
     });
-    $(document).on('backbutton', function() {
+    $(document).on('backbutton', function () {
         mainView.router.back();
         //$.mobile.changePage("#homepage", "slideup");
     });

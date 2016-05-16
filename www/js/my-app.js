@@ -1,13 +1,14 @@
 // Initialize your app
 var myApp = new Framework7({
+    tapHoldDelay: 600,
     animateNavBackIcon: true,
     precompileTemplates: true,
     onPageInit: function (fw7) {
         indexInit(fw7);
-        $(document).on('deviceready', function() {
+        $(document).on('deviceready', function () {
             console.log("Device is ready!");
             $$(document).on('pageInit', function (e) {
-                pageinit(fw7,e);
+                pageinit(fw7, e);
                 // Do something here when page loaded and initialized
             })
         });
@@ -30,50 +31,58 @@ mainView = myApp.addView('.view-main', {
     domCache: true
 });
 
-function indexInit(fw7){
-    $('.center').click(function(){
-        console.log('ok');});
+function indexInit(fw7) {
+    $('.center').click(function () {
+
+    });
 }
-function pageinit(fw7,e) {
-    var page=e.detail.page.name;
-    if(page==='whatever'){
-        console.log('fine');
+function pageinit(fw7, e) {
+    console.log('loaded');
+    var page = e.detail.page.name;
+    if (page === 'whatever') {
         var compiledTemplate = Template7.compile($$('#template').html());
         var context = {
             firstName: 'Alice',
             lastName: 'Doe'
         };
         var html = compiledTemplate(context);
-        $('.temp1').html(html)
+        $('.temp1').html(html);
+        $('.show1').click(function(){
+
+        });
+        $('.show2').click(function(){
+            setTimeout(function(){
+
+            },4000);
+        });
     }
 
-    console.log('loaded');
 
-    $(document).keypress(function(e){
+    $(document).keypress(function (e) {
         //console.log(e.which);
-        if(e.which===32){
-        //    use space as backbutton
-        //    mainView.router.load();
+        if (e.which === 32) {
+            //    use space as backbutton
+            //    mainView.router.load();
             console.log('spacebar');
         }
-        if(e.which===44){
+        if (e.which === 44) {
             $('.icon-back').click();
             console.log('pressed <');
         }
-        if(e.which===46){
+        if (e.which === 46) {
             console.log('pressed >');
         }
-        if(e.which===47){
+        if (e.which === 47) {
             $('.icon-back').click();
             console.log('pressed /');
         }
 
     });
-    $('.test2').click(function(){
+    $('.test2').click(function () {
         $('.icon-bars').click();
         //myApp.alert();
     });
-    $(document).on('backbutton', function() {
+    $(document).on('backbutton', function () {
         mainView.router.back();
         //$.mobile.changePage("#homepage", "slideup");
     });
